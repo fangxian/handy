@@ -1,6 +1,5 @@
 #include <handy/handy.h>
 #include <iostream>
-#include <stdio.h>
 using namespace std;
 using namespace handy;
 

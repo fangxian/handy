@@ -92,7 +92,8 @@ void PollerEpoll::loop_once(int waitMs) {
         Channel *ch = (Channel *) activeEvs_[i].data.ptr;
         int events = activeEvs_[i].events;
         if (ch) {
-            if (events & (kReadEvent | POLLERR)) {
+        	debug("Before call handle read and/or handle write");
+		    if (events & (kReadEvent | POLLERR)) {
                 trace("channel %lld fd %d handle read", (long long) ch->id(), ch->fd());
                 ch->handleRead();
             } else if (events & kWriteEvent) {
@@ -101,6 +102,7 @@ void PollerEpoll::loop_once(int waitMs) {
             } else {
                 fatal("unexpected poller events");
             }
+	        debug("After call handle read and/or handle write");
         }
     }
 }
